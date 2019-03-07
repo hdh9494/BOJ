@@ -11,9 +11,6 @@ using namespace std;
 int N, M, H;
 int sol = 0;
 
-int map[MAX][MAX][MAX];
-int check[MAX][MAX][MAX];
-
 int dx[6] = { 1,-1,0,0,0,0 };
 int dy[6] = { 0,0,1,-1,0,0 };
 int dz[6] = { 0,0,0,0,1,-1 };
@@ -21,22 +18,32 @@ int dz[6] = { 0,0,0,0,1,-1 };
 // 바이러스 pos를 삽입할 큐
 queue <pair<int, pair<int, int>>> q;
 
-void check_size()
+int main(void)
 {
+	int map[MAX][MAX][MAX];
+	int check[MAX][MAX][MAX];
+
+	scanf("%d %d %d", &M, &N, &H);
 	for (int k = 0; k < H; k++) {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				if (sol < check[k][i][j])
-					sol = check[k][i][j];
+				scanf("%d", &map[k][i][j]);
 
+				// 바이러스 pos를 큐에 삽입
+				// 바이러스가 퍼진 루틴을 계산하기 위해 바이러스 위치에 check를 0으로 표시
+				if (map[k][i][j] == 1) {
+					q.push(make_pair(k, make_pair(i, j)));
+					check[k][i][j] = 0;
+				}
+
+				// 바이러스 아닌 곳은 방문하지 않음을 표시 (-1)
+				else
+					check[k][i][j] = -1;
 			}
 		}
 	}
-}
-
-// virus 퍼짐(bfs)
-void bfs_virus()
-{
+	
+	// virus 퍼짐(bfs)
 	while (!q.empty())
 	{
 		int x = q.front().second.first;
@@ -60,33 +67,19 @@ void bfs_virus()
 		}
 
 	}
-}
 
-int main(void)
-{
-	scanf("%d %d %d", &M, &N, &H);
+	// 토마토가 모두 익는데 얼마나 걸리는지 확인
 	for (int k = 0; k < H; k++) {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				scanf("%d", &map[k][i][j]);
+				if (sol < check[k][i][j])
+					sol = check[k][i][j];
 
-				// 바이러스 pos를 큐에 삽입
-				// 바이러스가 퍼진 루틴을 계산하기 위해 바이러스 위치에 check를 0으로 표시
-				if (map[k][i][j] == 1) {
-					q.push(make_pair(k, make_pair(i, j)));
-					check[k][i][j] = 0;
-				}
-
-				// 바이러스 아닌 곳은 방문하지 않음을 표시 (-1)
-				else
-					check[k][i][j] = -1;
 			}
 		}
 	}
 
-	bfs_virus();
-	check_size();
-
+	// 토마토가 다 익지 못한 case를 check
 	for (int k = 0; k < H; k++) {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
@@ -96,8 +89,6 @@ int main(void)
 			}
 		}
 	}
-
-
 
 	printf("%d\n", sol);
 	return 0;
