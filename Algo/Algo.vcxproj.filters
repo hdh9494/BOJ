@@ -48,5 +48,8 @@
     <ClCompile Include="기출_15686_치킨배달.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="기출_14502_연구소.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
