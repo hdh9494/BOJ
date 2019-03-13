@@ -51,5 +51,8 @@
     <ClCompile Include="기출_14502_연구소.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1260_DFS,BFS기초.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
