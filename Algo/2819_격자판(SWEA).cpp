@@ -1,47 +1,64 @@
 #pragma warning(disable : 4996)
 
 #include <cstdio>
-#include <vector>
+#include <memory.h>
 
 using namespace std;
-typedef pair<int, int> pii;
+
+int T;
+int num;
 
 int map[4][4];
-int num[10000000];
-int sol;
+int check[10000000];
 
 int dx[4] = { 1,-1,0,0 };
 int dy[4] = { 0,0,1,-1 };
 
-void dfs(int x, int y, int cnt)
+int cal(int v)
 {
-	if (cnt == 7)
+	int multiplier = 1;
+	for (int i = 1; i <= v; i++)
+		multiplier *= 10;
+
+	return multiplier;
+}
+
+void dfs(int v1, int v2, int cnt)
+{
+	if (cnt > 6)
 	{
-		sol++;
+		check[num] = 1;
 		return;
 	}
-		
-	num[cnt] = map[x][y];
 
 	for (int i = 0; i < 4; i++)
 	{
-		int nx = x + dx[i];
-		int ny = y + dy[i];
+		int nx = v1 + dx[i];
+		int ny = v2 + dy[i];
 
 		if (0 <= nx && nx < 4 && 0 <= ny && ny < 4)
 		{
-			dfs(nx, ny, cnt++);
+			int square = cal(6 - cnt);
+			num = num + (square * map[nx][ny]);
+
+			int temp_num = num;
+			dfs(nx, ny, cnt + 1);
+			num = temp_num;
 		}
 	}
+
+
 }
 
 int main(void)
 {
-	int T;
 	scanf("%d", &T);
 
-	for (int tc = 1; tc <= T; tc++) {
-		
+	for (int tc = 1; tc <= T; tc++)
+	{
+		int val = 0;
+		memset(check, 0, sizeof(check));
+
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				scanf("%d", &map[i][j]);
@@ -50,13 +67,19 @@ int main(void)
 
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				dfs(i, j, 0);
+				num = 1000000 * map[i][j];
+				dfs(i, j, 1);
 			}
 		}
 
-		printf("%d\n", sol);
-		
+
+		for (int i = 0; i < 10000001; i++)
+			if (check[i])
+				val++;
+
+		printf("#%d %d\n", tc, val);
 
 	}
-}
+	return 0;
 
+}
