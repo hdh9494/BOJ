@@ -5,29 +5,27 @@
 
 using namespace std;
 
-int T;
-int num;
+int sol;
 
 int map[4][4];
-int check[10000000];
+bool check[10000000];
 
 int dx[4] = { 1,-1,0,0 };
 int dy[4] = { 0,0,1,-1 };
 
-int cal(int v)
+void init()
 {
-	int multiplier = 1;
-	for (int i = 1; i <= v; i++)
-		multiplier *= 10;
-
-	return multiplier;
+	sol = 0;
+	memset(check, 0, sizeof(check));
 }
 
-void dfs(int v1, int v2, int cnt)
+void dfs(int v1, int v2, int val, int cnt)
 {
-	if (cnt > 6)
+	// 7자리 숫자가 완성되면, 해당 숫자를 idx로 생각하고
+	// 그 idx 위치의 배열값을 1로 변경
+	if (cnt == 7)
 	{
-		check[num] = 1;
+		check[val] = true;
 		return;
 	}
 
@@ -37,49 +35,43 @@ void dfs(int v1, int v2, int cnt)
 		int ny = v2 + dy[i];
 
 		if (0 <= nx && nx < 4 && 0 <= ny && ny < 4)
-		{
-			int square = cal(6 - cnt);
-			num = num + (square * map[nx][ny]);
-
-			int temp_num = num;
-			dfs(nx, ny, cnt + 1);
-			num = temp_num;
-		}
+			dfs(nx, ny, 10 * val + map[nx][ny], cnt + 1);
+			// 처음 받은 값은 최종적으로 10^7의 값이기 때문에
+		    // 10을 곱해줌으로써, 가장 최근 map값이 1의 자리로 오게끔
 	}
-
-
 }
 
 int main(void)
 {
+	int T;
 	scanf("%d", &T);
 
 	for (int tc = 1; tc <= T; tc++)
 	{
-		int val = 0;
-		memset(check, 0, sizeof(check));
+		
+		init();  // 초기화 함수
 
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
+				// map 입력
 				scanf("%d", &map[i][j]);
 			}
 		}
 
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				num = 1000000 * map[i][j];
-				dfs(i, j, 1);
+				// 시작 위치 랜덤 - 4x4 배열 모든 위치에서 시작
+				// x, y, map위치의 값, cnt)
+				dfs(i, j, map[i][j], 1);
 			}
 		}
 
-
-		for (int i = 0; i < 10000001; i++)
+		// 7자리 숫자가 총 몇개인지 cnt
+		for (int i = 0; i < 10000000; i++)
 			if (check[i])
-				val++;
+				sol++;
 
-		printf("#%d %d\n", tc, val);
-
+		printf("#%d %d\n", tc, sol);
 	}
 	return 0;
-
 }
