@@ -57,5 +57,8 @@
     <ClCompile Include="2819_격자판(문자).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="3752_가능한시험점수(SWEA).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
