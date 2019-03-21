@@ -60,5 +60,11 @@
     <ClCompile Include="3752_가능한시험점수(SWEA).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2117_홈 방범 서비스(SWEA).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1868_지뢰찾기(SWEA).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

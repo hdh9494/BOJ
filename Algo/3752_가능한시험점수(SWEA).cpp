@@ -4,12 +4,13 @@
 #include <vector>
 #include <memory.h>
 
-#define MAX 101
+
+#define MAX 10001
 
 using namespace std;
 
 int N;
-bool visit[MAX];
+bool visit[];
 
 vector <int> num;
 
