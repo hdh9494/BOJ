@@ -4,13 +4,62 @@
 #include <vector>
 #include <memory.h>
 
+using namespace std;
 
+vector <int> vc;
+bool visit[10001];
+
+void init()
+{
+	memset(visit, 0, sizeof(visit));
+	vc.clear();
+}
+
+int main(void)
+{
+	int T;
+	scanf("%d", &T);
+
+	for (int tc = 1; tc <= T; tc++) {
+		init();
+		int N = 0, cnt = 0;
+		scanf("%d", &N);
+		vc.push_back(0);
+		visit[0] = 1;
+
+		for (int i = 0; i < N; i++)
+		{
+			int num;
+			scanf("%d", &num);
+
+			int temp = vc.size();
+			for (int j = 0; j < temp; j++)
+			{
+				if (!visit[vc[j] + num]) {
+					vc.push_back(vc[j] + num);
+					visit[vc[j] + num] = 1;
+					cnt++;
+				}
+
+			}
+		}
+
+		printf("#%d %d\n", tc, cnt+1);
+	}
+	return 0;
+}
+
+
+
+
+
+/*
 #define MAX 10001
 
 using namespace std;
 
 int N;
-bool visit[];
+bool visit[MAX];
 
 vector <int> num;
 
@@ -64,3 +113,4 @@ int main(void)
 	}
 	return 0;
 }
+*/

@@ -63,9 +63,6 @@
     <ClCompile Include="못품_2117_홈 방범 서비스%28SWEA%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="런타임_3752_가능한시험점수%28SWEA%29.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="6731_오델로게임(SWEA).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -79,6 +76,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="15652_N과M(4).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="3752_가능한시험점수%28SWEA%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
