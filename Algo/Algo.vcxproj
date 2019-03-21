@@ -146,7 +146,10 @@
     <ClCompile Include="1260_DFS,BFS기초.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="15649_N과M(1).cpp" />
+    <ClCompile Include="15649_N과M(1).cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="15650_N과M(2).cpp" />
     <ClCompile Include="1868_지뢰찾기(SWEA).cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
