@@ -81,5 +81,8 @@
     <ClCompile Include="3752_가능한시험점수%28SWEA%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="5656_벽돌깨기(SWEA).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
