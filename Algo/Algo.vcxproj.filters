@@ -87,5 +87,8 @@
     <ClCompile Include="소팅_quicksort.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2806_N_QUEEN(SWEA).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
