@@ -93,10 +93,10 @@
     <ClCompile Include="strcpy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="소팅_counting.cpp">
+    <ClCompile Include="5656_벽돌깨기_주의점.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="5656_벽돌깨기_주의점.cpp">
+    <ClCompile Include="정렬_Counting%28계수정렬%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
