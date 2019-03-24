@@ -4,7 +4,7 @@
 
 void strcpy_test(char *A, char *B)
 {
-	for (int i = 0; ; i++)
+	for (int i = 0 ; ; i++)
 	{
 		A[i] = B[i];
 		if (A[i] == '\0')
@@ -12,11 +12,11 @@ void strcpy_test(char *A, char *B)
 	}
 }
 
+// °íÄ¡±â
 void strcpy_test2(char *A, char *B)
 {
-	int i = 0;
-	while (B[i++] == '\0')
-		*A++ = *B++;
+	while (*B != '\0')
+		*A++ = *B;
 }
 
 int main(void)
