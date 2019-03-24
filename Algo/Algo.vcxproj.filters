@@ -90,5 +90,14 @@
     <ClCompile Include="2806_N_QUEEN(SWEA).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="strcpy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소팅_counting.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="5656_벽돌깨기_주의점.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

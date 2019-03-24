@@ -5,6 +5,14 @@ using namespace std;
 
 int arr[10] = { 9,2,4,1,8,7,3,0,5,6 };
 
+void swap(int a, int b)
+{
+	int temp = arr[a];
+	arr[a] = arr[b];
+
+	arr[b] = temp;
+}
+
 void quick_sort(int arr[], int left, int right)
 {
 	int i, j;
@@ -27,17 +35,13 @@ void quick_sort(int arr[], int left, int right)
 			while (arr[j] > pivot);
 
 			if (i < j) {          // 엇갈리지 않으면 두 요소를 swap
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(i,j);
 			}
 			else                  // 엇갈리면 중단
 				break;
 		}
 
-		temp = arr[j];
-		arr[j] = arr[left];
-		arr[left] = temp;
+		swap(j, left);
 
 		quick_sort(arr, left, j - 1);
 		quick_sort(arr, j + 1, right);
