@@ -9,7 +9,6 @@ void swap(int a, int b)
 {
 	int temp = arr[a];
 	arr[a] = arr[b];
-
 	arr[b] = temp;
 }
 
@@ -61,4 +60,9 @@ int main(void)
 		printf("%d ", arr[i]);
 	printf("\n");
 	return 0;
+
+	// 장점 : 시간복잡도 O(nlogn)
+	// 단점 : 
+	
+	// => pivot으로 어떤 수를 선언하는지 매우 중요. 대체로 빠른 속도를 가지고 있다. (분할정복)
 }

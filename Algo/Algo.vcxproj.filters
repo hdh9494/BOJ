@@ -84,9 +84,6 @@
     <ClCompile Include="5656_벽돌깨기(SWEA).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="소팅_quicksort.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="2806_N_QUEEN(SWEA).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -97,6 +94,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="정렬_Counting%28계수정렬%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="정렬_Quick%28퀵소트%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
