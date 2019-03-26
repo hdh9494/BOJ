@@ -108,5 +108,11 @@
     <ClCompile Include="기출_16236_아기상어1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="16988_바둑.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="다시풀기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
