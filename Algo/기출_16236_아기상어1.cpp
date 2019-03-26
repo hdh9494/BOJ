@@ -33,7 +33,7 @@ bool boundary_check(int y, int x)
 		return true;
 	return false;
 }
-
+ 
 
 // return true 부분만 적용된다고 생각하면 됨.
 bool cmp(fish a, fish b)
