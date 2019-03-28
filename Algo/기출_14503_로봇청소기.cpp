@@ -14,6 +14,7 @@ int visit[MAX][MAX];
 
 void dfs(int x, int y, int dir)
 {
+	// 벽을 만났을 때, return 추가!
 	if (map[x][y] == 1)
 		return;
 
@@ -26,9 +27,11 @@ void dfs(int x, int y, int dir)
 			if (!map[x][ny]) {
 				map[x][ny] = 9;
 				dfs(x, ny, dir);
+				// return 위치 생각.
 				return;
 			}
 			else
+				// 벽이거나 이미 청소한 위치면, 방향을 왼쪽으로 돌린다
 				continue;
 
 		}
@@ -73,8 +76,11 @@ void dfs(int x, int y, int dir)
 			else
 				continue;
 		}
-	}
+	}// 검사 끝
 	
+
+	// 4방향이 모두 청소했거나, 방인 경우
+	// 방향을 유지한채로 후진.
 	if (dir == 0)
 	{
 		int nx = x + 1;
