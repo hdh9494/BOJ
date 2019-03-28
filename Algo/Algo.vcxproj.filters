@@ -117,5 +117,8 @@
     <ClCompile Include="기출_14889_스타트와링크.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="기출_14888_연산자끼워넣기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
