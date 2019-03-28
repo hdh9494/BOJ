@@ -28,6 +28,19 @@ void dfs(int total, int cnt)
 		op[0]--;
 		dfs(total + num[cnt], cnt + 1);
 		op[0]++;
+
+		/* 
+		
+		total을 생성해서 계산하고, 그 값을 파라미터에 넣는 방식은
+		dfs가 끝나고 return 되었을 때, total 값이 1번 더 계산된 상태
+		
+		   
+		op[0]--;
+		total += num[cnt];
+		dfs(total, cnt + 1);
+		op[0]++;
+
+		*/
 	}
 
 	if (op[1] > 0)
