@@ -15,17 +15,26 @@ bool boundary_check(int n)
 }
 
 
+// 톱니바퀴 회전 - swap방식으로 진행... 무식하게 꼽지말고
+// 끝에 값 temp에 받아두고 돌리자..
 void rotate_gear(int gear_num, int dir)
 {
-	for (int i = 0; i < 8; i++)
+	if (dir == 1)
 	{
-		int next = (i + 1) % 8;
-		
-		if (dir == 1)
-			gear[gear_num][next] = gear[gear_num][i];
-		else
-			gear[gear_num][i] = gear[gear_num][next];
+		int temp = gear[gear_num][7];
+		for (int i = 6; i >= 0; i--) 
+			gear[gear_num][i+1] = gear[gear_num][i];
+		gear[gear_num][0] = temp;
 	}
+
+	else if (dir == -1)
+	{
+		int temp = gear[gear_num][0];
+		for (int i = 0; i <= 6; i++)
+			gear[gear_num][i] = gear[gear_num][i+1];
+		gear[gear_num][7] = temp;
+	}
+	
 }
 
 void move_left(int n, int d)
