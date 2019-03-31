@@ -254,7 +254,10 @@
     <ClCompile Include="5656_벽돌깨기_주의점.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="정렬_Selection%28삽입정렬%29.cpp" />
+    <ClCompile Include="정렬_Bubble(버블정렬).cpp" />
+    <ClCompile Include="정렬_Selection%28삽입정렬%29.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="정렬_Counting%28계수정렬%29.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
