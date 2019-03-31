@@ -25,7 +25,7 @@ void print_res(int tc, int arr[], int len)
 	printf("\n\n");
 }
 
-// print_res(i, arr, len);
+
 void Insertion_sort(int arr[], int len)
 {
 	for (int i = 1; i < len; i++)
