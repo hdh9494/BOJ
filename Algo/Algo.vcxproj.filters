@@ -135,5 +135,8 @@
     <ClCompile Include="정렬_Quick%28퀵정렬%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="정렬_Selection%28삽입정렬%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
