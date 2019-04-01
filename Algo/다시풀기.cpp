@@ -1,126 +1,41 @@
 #pragma warning(disable : 4996)
 
 #include <cstdio>
-#include <queue>
+#include <algorithm>
 
-#define MAX 50
 using namespace std;
 
-int N, M;
-int r, c, d;
+int N;
+int sol;
 
-int map[MAX][MAX];
+int T[15];
+int P[15];
 
-int dx[4] = {};
-int dy[4] = { };
 
-void dfs(int x, int y, int dir)
+
+void dfs(int total, int cnt)
 {
-	if (map[x][y] == 1)
+	if (cnt == N)
+	{
+		sol = max(sol, total);
 		return;
-
-	map[x][y] = 9;
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (dir == 0)
-		{
-			dir = 3;
-			int ny = y - 1;
-			if (map[x][ny] == 0) {
-				dfs(x, ny, dir);
-				return;
-			}
-
-			else
-				continue;
-		}
-
-
-		if (dir == 3)
-		{
-			dir = 2;
-			int nx = x + 1;
-			if (map[nx][y] == 0) {
-				dfs(nx, y, dir);
-				return;
-			}
-			else
-				continue;
-		}
-
-		if (dir == 2)
-		{
-			dir = 1;
-			int ny = y + 1;
-			if (map[x][ny] == 0) {
-				dfs(x, ny, dir);
-				return;
-			}
-			else
-				continue;
-		}
-
-		if (dir == 1)
-		{
-			dir = 0;
-			int nx = x - 1;
-			if (map[nx][y] == 0) {
-				dfs(nx, y, dir);
-				return;
-			}
-			else
-				continue;
-		}
-	}
-	// Å½»ö ¿Ï·á
-
-	if (dir == 0)
-	{
-		int nx = x + 1;
-		dfs(nx, y, dir);
 	}
 
-	if (dir == 3)
-	{
-		int ny = y + 1;
-		dfs(x, ny, dir);
-	}
+	if (cnt < N)
+		dfs(total, cnt + 1);
 
-	if (dir == 2)
-	{
-		int nx = x - 1;
-		dfs(nx, y, dir);
-	}
-
-	if (dir == 1)
-	{
-		int ny = y - 1;
-		dfs(x, ny, dir);
-	}
+	if (T[cnt] + cnt <= N)
+		dfs(total + P[cnt], T[cnt] + cnt);
 	
 }
 
 int main(void)
 {
-	scanf("%d %d", &N, &M);
-	scanf("%d %d %d", &r, &c, &d);
+	scanf("%d", &N);
+	for (int i = 0; i < N; i++)
+		scanf("%d %d", &T[i], &P[i]);
 
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			scanf("%d", &map[i][j]);
-		}
-	}
-	
-	dfs(r, c, d);
-	
-	int cnt = 0;
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			if (map[i][j] == 9)
-				cnt++;
-		}
-	}
-	printf("%d\n", cnt);
+	dfs(0,0);
+	printf("%d\n", sol);
 	return 0;
 }
