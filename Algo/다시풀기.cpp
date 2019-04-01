@@ -11,8 +11,6 @@ int sol;
 int T[15];
 int P[15];
 
-
-
 void dfs(int total, int cnt)
 {
 	if (cnt == N)
