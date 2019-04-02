@@ -156,5 +156,8 @@
     <ClCompile Include="15654_N과M(5).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="15655_N과M(6).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
