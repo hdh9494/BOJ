@@ -1,28 +1,16 @@
 #pragma warning(disable : 4996)
 
 #include <cstdio>
-
-
+#include <queue>
+#include <algorithm>
 #define MAX 20
+
 using namespace std;
 
 int N;
 int sol;
+
 int map[MAX][MAX];
-
-//          좌 상 우 하
-int dx[4] = { 0,-1,0,1 };
-int dy[4] = { -1,0,1,0 };
-
-void check()
-{
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {
-			if (sol < map[i][j])
-				sol = map[i][j];
-		}
-	}
-}
 
 void copy_map(int(*a)[MAX], int(*b)[MAX])
 {
@@ -33,127 +21,151 @@ void copy_map(int(*a)[MAX], int(*b)[MAX])
 	}
 }
 
-
-void reset_left(int x, int y)
+void merge(int dir)
 {
-	for (int i = 0; i < N - 1; i++) {
-		if (map[x][i] == 0) {
-			map[x][i] = map[x][i + 1];
-			map[x][i + 1] = 0;
+	queue <int> q;
+
+	// 좌 - (서)
+	if (dir == 0){
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				if (map[i][j] != 0)
+					q.push(map[i][j]);
+				map[i][j] = 0;
+			}
+
+			int idx = 0;
+			int pop_data;
+
+			while (!q.empty())
+			{
+				pop_data = q.front();
+				q.pop();
+
+				// 맨 처음 비어있으면 data 삽입.
+				// idx 증가 X - 다음 값과 비교하기 위해
+				if (map[i][idx] == 0) map[i][idx] = pop_data;
+
+				// 기존에 있던 데이터와 같은 값이 오면, 2배 증가
+				// idx++
+				else if (map[i][idx] == pop_data) {
+					map[i][idx] *= 2;
+					idx++;
+				}
+
+				// 기존에 있던 데이터와 다른 값이 오면
+				// ++idx 하여 데이터 삽입.
+				else map[i][++idx] = pop_data;			
+			}
 		}
 	}
-}
+	
+	// 상 - (북)
+	else if (dir == 1){
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				if (map[j][i] != 0)
+					q.push(map[j][i]);
+				map[j][i] = 0;
+			}
 
-void reset_right(int x, int y)
-{
-	for (int i = N-1; i >= 0 ; i--) {
-		if (map[x][i] == 0) {
-			map[x][i] = map[x][i - 1];
-			map[x][i - 1] = 0;
+			int idx = 0;
+			int pop_data;
+
+			while (!q.empty())
+			{
+				pop_data = q.front();
+				q.pop();
+
+				if (map[idx][i] == 0) map[idx][i] = pop_data;
+				else if (map[idx][i] == pop_data) {
+					map[idx][i] *= 2;
+					idx++;
+				}
+				else map[++idx][i] = pop_data;
+			}			
 		}
 	}
-}
 
-void reset_up(int x, int y)
-{
-	for (int i = 0; i < N - 1; i++) {
-		if (map[i][y] == 0) {
-			map[i][y] = map[i + 1][y];
-			map[i + 1][y] = 0;
+	// 우 - (동)
+	else if (dir == 2) {
+		for (int i = 0; i < N; i++) {
+			for (int j = N - 1; j >= 0; j--) {
+				if (map[i][j] != 0) 
+					q.push(map[i][j]);
+				map[i][j] = 0;
+			}
+			
+			int idx = N - 1;
+			int pop_data;
+
+			while (!q.empty())
+			{
+				pop_data = q.front();
+				q.pop();
+
+				if (map[i][idx] == 0) map[i][idx] = pop_data;
+				else if (map[i][idx] == pop_data) {
+					map[i][idx] *= 2;
+					idx--;
+				}
+				else map[i][--idx] = pop_data;
+			}
 		}
 	}
-}
 
-void reset_down(int x, int y)
-{
-	for (int i = N - 1; i >= 0; i--) {
-		if (map[i][y] == 0) {
-			map[i][y] = map[i - 1][y];
-			map[i - 1][y] = 0;
+
+	// 하 - (남)
+	else if (dir == 3) {
+		for (int i = 0; i < N; i++) {
+			for (int j = N - 1; j >= 0; j--) {
+				if (map[j][i] != 0) 
+					q.push(map[j][i]);
+				map[j][i] = 0;
+			}
+
+			int idx = N - 1;
+			int pop_data;
+
+			while (!q.empty())
+			{
+				pop_data = q.front();
+				q.pop();
+
+				if (map[idx][i] == 0) map[idx][i] = pop_data;
+				else if (map[idx][i] == pop_data) {
+					map[idx][i] *= 2;
+					idx--;
+				}
+				else map[--idx][i] = pop_data;
+			}
 		}
 	}
 }
 
 void dfs(int cnt)
-{	
+{
 	if (cnt == 5)
 	{
-		check();
+		// 배열의 최대값 구하기
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				sol = max(sol, map[i][j]);
+			}
+		}
 		return;
 	}
 
 	int temp[MAX][MAX];
 	copy_map(temp, map);
 
-	for (int dir = 0; dir < 4; dir++)
+	for (int i = 0; i < 4; i++)
 	{
-		// 좌
-		if (dir == 0)
-		{
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					if (map[i][j] == map[i][j + 1]) {
-						map[i][j] *= 2;
-						map[i][j + 1] = 0;
-					}
-				}
-				reset_left(i, 0);
-			}
-			dfs(cnt + 1);
-			copy_map(map, temp);
-		}
-
-		// 상
-		else if (dir == 1)
-		{
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					if (map[j][i] == map[j + 1][i]) {
-						map[j][i] *= 2;
-						map[j + 1][i] = 0;
-					}
-				}
-				reset_up(0, i);
-			}
-			dfs(cnt + 1);
-			copy_map(map, temp);
-		}
-
-		// 우
-		else if (dir == 2)
-		{
-			for (int i = 0; i < N; i++) {
-				for (int j = N - 1; j > 0; j--) {
-					if (map[i][j - 1] == map[i][j]) {
-						map[i][j] *= 2;
-						map[i][j - 1] = 0;
-					}
-				}
-				reset_right(i, 0);
-			}
-			dfs(cnt + 1);
-			copy_map(map, temp);
-		}
-
-		// 하
-		else if (dir == 3)
-		{
-			for (int i = 0; i < N; i++) {
-				for (int j = N - 1; j >= 0; j--) {
-					if (map[j][i] == map[j - 1][i]) {
-						map[j][i] *= 2;
-						map[j - 1][i] = 0;
-					}
-				}
-				reset_down(0, i);
-			}
-			dfs(cnt + 1);
-			copy_map(map, temp);
-		}
+		merge(i);
+		dfs(cnt + 1);
+		copy_map(map, temp);
 	}
-
 	
-
 }
 
 int main(void)
