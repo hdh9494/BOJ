@@ -171,5 +171,8 @@
     <ClCompile Include="10972_다음순열.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1476_날짜계산.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
