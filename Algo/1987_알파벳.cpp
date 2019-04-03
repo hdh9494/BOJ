@@ -38,7 +38,7 @@ void dfs(int x, int y, int cnt)
 			check[map[nx][ny]] = false;
 		}
 	}
-}
+} 
 
 int main(void)
 {
