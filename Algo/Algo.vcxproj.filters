@@ -174,5 +174,8 @@
     <ClCompile Include="1476_날짜계산.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1107_리모컨.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
