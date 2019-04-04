@@ -204,5 +204,8 @@
     <ClCompile Include="1722_순열의순서1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2580_스도쿠.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
