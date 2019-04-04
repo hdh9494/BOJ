@@ -189,5 +189,8 @@
     <ClCompile Include="1697_숨바꼭질.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="9019_DSLR.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
