@@ -51,7 +51,7 @@ void bfs(int A, int B)
 		q.pop();
 
 		if (cur == B) {
-			printf("%s\n", s);
+			cout << s << "\n";
 			break;
 		}
 		
