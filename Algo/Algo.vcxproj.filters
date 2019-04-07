@@ -213,5 +213,11 @@
     <ClCompile Include="16985_maze(3차원).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17135_캐슬디펜스(4.6 A형).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="10825_국영수.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
