@@ -20,6 +20,7 @@ void dfs(int cnt)
 		return;
 	}
 
+	// 숫자 1부터 N까지 모든 경우에서 탐색
 	for (int i = 1; i <= N; i++)
 	{
 		if (!visit[i])
