@@ -10,9 +10,9 @@ int visit[8];
 
 vector <int> vc;
 
-void dfs()
+void dfs(int cnt)
 {
-	if (vc.size() == M)
+	if (cnt == M)
 	{
 		for (int i = 0; i < vc.size(); i++)
 			printf("%d ", vc[i]);
@@ -26,7 +26,7 @@ void dfs()
 		{
 			vc.push_back(i);
 			visit[i] = 1;
-			dfs();
+			dfs(cnt + 1);
 			vc.pop_back();
 			visit[i] = 0;
 		}
@@ -36,6 +36,6 @@ void dfs()
 int main(void)
 {
 	scanf("%d %d", &N, &M);
-	dfs();
+	dfs(0);
 	return 0;
 }
