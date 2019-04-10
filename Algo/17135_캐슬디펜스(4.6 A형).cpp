@@ -10,6 +10,7 @@ typedef pair<int, int> pii;
 
 int N, M, D;
 int map[MAX][MAX];
+bool visit[MAX][MAX];
 
 vector <pii> enemy;
 vector <pii> bow;
@@ -18,11 +19,21 @@ vector <pii> vc;
 struct s_enemy {
 	int x;
 	int y;
+	int dist; // 궁수와의 거리
 };
 
 bool cmp(s_enemy A, s_enemy B)
 {
-	if()
+	// 거리 오름차순
+	if (A.dist < B.dist)
+		return true;
+
+	// 거리 같으면, y 오름차순
+	else if (A.dist == B.dist)
+		return A.y < B.y;
+	
+	else
+		return false;
 }
 
 void kill_enemy()
@@ -45,14 +56,16 @@ void kill_enemy()
 
 			// 궁수가 공격할 수 있는 적의 위치를 벡터 v에 저장.
 			if (dist <=	D)
-				v.push_back({ enemy_x, enemy_y });
+				v.push_back({ enemy_x, enemy_y, dist });
 		}
 		
 		sort(v.begin(), v.end(), cmp);
+
+		
 	}
 }
 
-void dfs(int cnt)
+void dfs(int idx, int cnt)
 {
 	if (cnt == 3)
 	{
@@ -61,11 +74,21 @@ void dfs(int cnt)
 		return;
 	}
 
-	for (int i = 0; i < bow.size(); i++)
+	for (int i = idx; i < bow.size(); i++)
 	{
-		vc.push_back(vc[i]);
-		dfs(cnt + 1);
-		vc.pop_back();
+		int bx = bow[idx].first;
+		int by = bow[idx].second;
+
+		if (!visit[bx][by])
+		{
+			vc.push_back(bow[cnt]);
+			visit[bx][by] = 1;
+
+			dfs(i + 1, cnt + 1);
+
+			visit[bx][by] = 0;
+			vc.pop_back();
+		}
 	}
 }
 
@@ -87,7 +110,7 @@ int main(void)
 	for (int k = 0; k < M; k++)
 		bow.push_back(make_pair(N, k));
 
-	dfs(0);
+	dfs(0, 0);
 }
 
 
