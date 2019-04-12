@@ -63,13 +63,10 @@ int kill_enemy()
 	while (loop--)
 	{
 		// 궁수가 공격한 적군의 좌표 저장
-		// pair<int, int> Target[5];
-
-		vector <pair<int, int>> Target;
-		int idx = 0;
+		pair<int, int> Target[5];
 
 		// 3명의 궁수를 각각 모두 고려
-		for (int b = 0; b < 3; b++) 
+		for (int b = 0; b < bow.size(); b++) 
 		{
 			vector <enemy> v;
 			for (int i = 0; i < N; i++) {
@@ -86,21 +83,29 @@ int kill_enemy()
 				}
 			}
 
-			// 궁수가 조건에 맞게 공격한 적의 정보를 sort해서 얻음 => v[0]
-			sort(v.begin(), v.end(), cmp);
-			
-			// Target된 적의 x,y 좌표 얻어 Target[]에 입력
-			
-			int vx = v[0].x;
-			int vy = v[0].y;
+			int Target_num = v.size();
 
-			Target.push_back(make_pair(vx, vy));
-			/*
-			Target[idx].first = v[0].x;
-			Target[idx].second = v[0].y;
-			*/
+			if (Target_num > 1)
+			{
+				// 궁수가 조건에 맞게 공격한 적의 정보를 sort해서 얻음 => v[0]
+				sort(v.begin(), v.end(), cmp);
+				Target[b].first = v[0].x;
+				Target[b].second = v[0].y;
+			}
 
-			idx++;
+			else if (Target_num == 1)
+			{
+				Target[b].first = v[0].x;
+				Target[b].second = v[0].y;
+			}
+			
+			// 공격할 적이 한명도 없을 때 !!!!!
+			else
+			{
+				Target[b].first = -1;
+				Target[b].second = -1;
+			}
+
 		}
 
 		// Target된 적군을 제거하고 결과값++
