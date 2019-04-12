@@ -264,5 +264,8 @@
     <ClCompile Include="기출_15684_사다리조작.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17070_파이프옮기기1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
