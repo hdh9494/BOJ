@@ -3,43 +3,26 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+#include <memory.h>
 
-#define MAX 16
+#define MAX 17
+
 using namespace std;
-typedef pair<int, int> pii;
 
-int N, M, D, Answer, Temp_Answer;
-int map[MAX][MAX];
-bool visit[MAX][MAX];
-bool Selected[MAX];
-
-int temp[MAX][MAX];
-
-
-vector <pii> enemy;
-vector <pii> vc;
-
-vector <int> bow_pos;
-
-struct s_enemy {
+struct enemy {
 	int x;
 	int y;
-	int dist; // 궁수와의 거리
+	int dist;
 };
 
-bool cmp(s_enemy A, s_enemy B)
-{
-	// 거리 오름차순
-	if (A.dist < B.dist)
-		return true;
+int sol = 0;
+int N, M, D;
 
-	// 거리 같으면, y 오름차순
-	else if (A.dist == B.dist)
-		return A.y < B.y;
-	
-	else
-		return false;
-}
+int map[MAX][MAX];
+
+bool Selected[MAX]; // 조합 구현시 필요
+
+vector <int> bow;
 
 void copy_map(int(*a)[MAX], int(*b)[MAX])
 {
@@ -50,106 +33,136 @@ void copy_map(int(*a)[MAX], int(*b)[MAX])
 	}
 }
 
-void map_down()
+bool cmp(enemy A, enemy B)
 {
-	for (int i = N; i >= 1; i++) {
-		for (int j = 0; j < M; j++) {
-			map[i][j] = map[i - 1][j];
+	// 거리 오름차순 : v[0] -> 더 가까운 적
+	if (A.dist <= B.dist) {
+
+		// 거리가 같으면
+		if (A.dist == B.dist) {
+
+			// y 오름차순 : v[0] -> 더 왼쪽위치의 적
+			if (A.y < B.y) {
+				return true;
+			}
+			return false;
 		}
+		return true;
 	}
+	return false;
 }
 
-void kill_enemy()
+
+int kill_enemy()
 {
+	int temp[MAX][MAX];
 	copy_map(temp, map);
+	int cnt = 0;
+	int loop = N;
 
-	while (1)
+	while (loop--)
 	{
+		// 궁수가 공격한 적군의 좌표 저장
+		// pair<int, int> Target[5];
 
-	}
+		vector <pair<int, int>> Target;
+		int idx = 0;
 
-	// N번 내릴 때 까지
-	while (N--) 
-	{
-		// 선택한 3명의 궁수 좌표와
-		for (int i = 0; i < vc.size(); i++)
+		// 3명의 궁수를 각각 모두 고려
+		for (int b = 0; b < 3; b++) 
 		{
-			int bow_x = vc[i].first;
-			int bow_y = vc[i].second;
+			vector <enemy> v;
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < M; j++) {
+					if (temp[i][j] == 1)
+					{
+						// 적과 궁수의 거리 비교
+						int dist = abs(N - i) + abs(bow[b] - j);
 
-			vector <s_enemy> v;
-
-			// 적의 위치를 모두 비교하여
-			for (int j = 0; j < enemy.size(); j++)
-			{
-				int enemy_x = enemy[i].first;
-				int enemy_y = enemy[i].second;
-
-				int dist = abs(bow_x - enemy_x) + abs(bow_y - enemy_y);
-
-				// 궁수가 공격할 수 있는 적의 위치를 벡터 v에 저장.
-				if (dist <= D)
-					v.push_back({ enemy_x, enemy_y, dist });
+						// 거리가 D 이하이면 벡터 enemy에 저장
+						if (dist <= D)
+							v.push_back({ i,j,dist });
+					}
+				}
 			}
 
+			// 궁수가 조건에 맞게 공격한 적의 정보를 sort해서 얻음 => v[0]
 			sort(v.begin(), v.end(), cmp);
+			
+			// Target된 적의 x,y 좌표 얻어 Target[]에 입력
+			
+			int vx = v[0].x;
+			int vy = v[0].y;
 
+			Target.push_back(make_pair(vx, vy));
+			/*
+			Target[idx].first = v[0].x;
+			Target[idx].second = v[0].y;
+			*/
 
+			idx++;
 		}
+
+		// Target된 적군을 제거하고 결과값++
+		for (int k = 0; k < 3; k++)
+		{
+			
+			int x = Target[k].first;
+			int y = Target[k].second;
+
+			if (temp[x][y] == 1)
+			{
+				temp[x][y] = 0;
+				cnt++;
+			}
+		}
+
+		// 적 위치 한칸씩 내리기
+		for (int i = N - 2; i >= 0; i--) {
+			for (int j = 0; j < M; j++) {
+				temp[i + 1][j] = temp[i][j];
+			}
+		}
+		for (int i = 0; i < M; i++) temp[0][i] = 0;
 	}
+
+	return cnt;
 }
 
-void dfs(int idx, int cnt)
+
+void select_bow(int idx, int cnt)
 {
-	// 궁수 3마리 뽑은 상태에서 적군 사냥 시작
 	if (cnt == 3)
 	{
-		Temp_Answer = 0;
-		kill_enemy();
-		Answer = max(Answer, Temp_Answer);
+		sol = max(sol, kill_enemy());
 		return;
 	}
 
-	for (int i = idx; i < M ; i++)
+	for (int i = idx; i < M; i++)
 	{
-		
 		if (!Selected[i])
 		{
-			bow_pos.push_back(i);
 			Selected[i] = true;
+			bow.push_back(i);
 
-			dfs(i, cnt + 1);
+			select_bow(i, cnt + 1);
 
 			Selected[i] = false;
-			vc.pop_back();
+			bow.pop_back();
 		}
 	}
 }
 
 int main(void)
 {
-	// map 데이터 넣어주기
 	scanf("%d %d %d", &N, &M, &D);
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			scanf("%d", &map[i][j]);
-
-			// 적 좌표 벡터에 삽입
-			if (map[i][j] == 1)
-				enemy.push_back(make_pair(i, j));
 		}
 	}
 
-	/*  메모리 낭비 + 시간낭비 =>D
-
-	// N번째 행인 궁수 좌표를 삽입 MC3 (완탐)
-	for (int k = 0; k < M; k++)
-		bow.push_back(make_pair(N, k));
-
-	*/
-
-	dfs(0, 0);
+	select_bow(0,0);
+	printf("%d\n", sol);
+	return 0;
 }
-
-
-
