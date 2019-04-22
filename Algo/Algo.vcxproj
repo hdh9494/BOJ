@@ -167,6 +167,7 @@
     <ClCompile Include="1182_부분수열의합.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="1193_분수찾기.cpp" />
     <ClCompile Include="1260_DFS,BFS기초.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
