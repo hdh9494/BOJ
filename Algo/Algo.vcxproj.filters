@@ -297,5 +297,8 @@
     <ClCompile Include="10828_스택.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2747_피보나치수.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
