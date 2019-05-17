@@ -31,16 +31,24 @@ int main(void)
 	printf("\n");
 
 
-	// 4. 주소값 먼저 ++ 한 후, *를 통해 접근하여 값 변경
+	// 4. *를 통해 ptr에 먼저 접근하고 ++ptr 연산을 수행
+	++(*ptr);
+	for (int i = 0; i < 10; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+
+
+	// 5. *를 통해 ptr에 먼저 접근하여 값 변경 후 / 주소값 ptr++
 	*ptr++ = 44;
 	for (int i = 0; i < 10; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 
 
-	// 4. ptr++ 확인
+	// 5-1. ptr++ 확인
 	*ptr++ = 50;
 	for (int i = 0; i < 10; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
+
 }
