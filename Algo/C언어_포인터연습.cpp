@@ -1,9 +1,10 @@
 #pragma warning(disable : 4996)
 
-#include <cstdio>
+#include <stdio.h>
 
 int main(void)
 {
+	printf("포인터 연산자 사용법 & 문제\n\n");
 	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
 	int * ptr = arr;
 
@@ -51,4 +52,46 @@ int main(void)
 		printf("%d ", arr[i]);
 	printf("\n");
 
+
+	
+	printf("\n**포인터배열 vs 배열포인터**\n\n");
+	// **포인터배열 vs 배열포인터**
+
+	// 1. 포인터 배열 - 변수들의 주소를 담는 배열
+
+	// 2. 배열 포인터 - 배열을 가르키는 포인터를 의미.
+	
+	int len = 0;
+	
+	int a = 10;
+	int b = 20;
+	int c = 30;
+
+
+
+	// 1. 포인터 배열의 선언
+	int *ptrArr[3] = { &a, &b, &c };
+
+	// 2. 배열 포인터의 선언
+	int arr1[2][3] = { 1,2,3,4,5,6 };
+	int(*arrPtr)[3] = arr1;
+
+
+	// 포인터 배열의 활용
+	printf("포인터 배열의 활용\n");
+	for (int i = 0; i < 3; i++)
+		printf("%d ", *ptrArr[i]);
+	printf("\n\n");
+
+
+	// 배열 포인터의 활용
+	printf("배열 포인터의 활용\n");
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 3; j++) {
+			printf("%d ", arrPtr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n");
 }

@@ -306,7 +306,7 @@
     <ClCompile Include="전화번호부%28구조체,포인터%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="포인터연습.cpp">
+    <ClCompile Include="C언어_포인터연습.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
