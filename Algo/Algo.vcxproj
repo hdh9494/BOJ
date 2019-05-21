@@ -317,6 +317,7 @@
     <ClCompile Include="strcpy.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="test.cpp" />
     <ClCompile Include="전화번호부%28구조체,포인터%29.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -431,7 +432,9 @@
     <ClCompile Include="정렬_Selection%28선택정렬%29.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="C언어_포인터연습.cpp" />
+    <ClCompile Include="C언어_포인터연습.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="15657_N과M%288%29.cpp">

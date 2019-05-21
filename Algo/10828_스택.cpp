@@ -1,65 +1,66 @@
 #pragma warning(disable : 4996)
 
-#include <iostream>
-#include <vector>
-#include <string>
+#include <cstdio>
+#include <string.h>
 
 using namespace std;
 
-int N;
-vector <int> stack;
-int top = -1;
+int stack[100001];
+int idx = -1;
 
 int main(void)
 {
-	scanf("%d", &N);
-	for (int i = 0; i < N; i++)
+	int tc;
+	scanf("%d", &tc);
+
+	for (int i = 0; i < tc; i++)
 	{
-		string str;
-		int num;
+		char str[10] = { 0, };
+		scanf("%s", str);
 
-		cin >> str;
+		// 1. push
+		if (!strcmp(str, "push"))
+		{
+			int val = 0;
+			scanf("%d", &val);
 
-		if (!str.compare("push")) {
-			cin >> num;
-			if (top > 10000)
-				break;
-			
-			stack.push_back(num);
-			top++;
+			stack[++idx] = val;
 		}
 
-		else if (!str.compare("pop")) {
-			if (top == -1)
+		// 2. pop
+		else if (!strcmp(str, "pop"))
+		{
+			if (idx == -1)
 				printf("-1\n");
-
-			else {
-				int val = stack[top];
-				printf("%d\n", val);
-				stack.pop_back();
-				top--;
-			}
+			else
+				printf("%d\n", stack[idx--]);
 		}
 
-		else if (!str.compare("top")) {
-			if (top == -1)
+		// 3. top
+		else if (!strcmp(str, "top"))
+		{
+			if (idx == -1)
 				printf("-1\n");
-			else {
-				int val = stack[top];
-				printf("%d\n", val);
-			}
+			else
+				printf("%d\n", stack[idx]);
 		}
 
-		else if (!str.compare("empty")) {
-			if (top == -1)
+		// 4. empty
+		else if (!strcmp(str, "empty"))
+		{
+			if (idx == -1)
 				printf("1\n");
 			else
 				printf("0\n");
 		}
 
-		else if (!str.compare("size")) {
-			int len = stack.size();
-			printf("%d\n", len);
+		// 5. size
+		else if (!strcmp(str, "size"))
+		{
+			if (idx == -1)
+				printf("0\n");
+			else
+				printf("%d\n", idx + 1);
 		}
 	}
 	return 0;
