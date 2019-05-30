@@ -327,5 +327,8 @@
     <ClCompile Include="2504_괄호의값.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="9935_문자열폭발.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
