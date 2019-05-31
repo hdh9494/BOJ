@@ -336,5 +336,8 @@
     <ClCompile Include="2309_일곱난쟁이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17206_준석이의수학문제.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
