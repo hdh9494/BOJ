@@ -34,7 +34,8 @@ int main(void)
 	
 	dfs(0,0);
 
-
+	if (S == 0)
+		sol -= 1;
 
 	printf("%d\n", sol);
 	return 0;
